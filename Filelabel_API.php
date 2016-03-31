@@ -49,10 +49,10 @@ class Filelabel_API {
         curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
         $return = curl_exec($curl);
         curl_close($curl);
-        return ($utf8) ? json_decode(utf8_encode($return))->output : json_decode($return)->output;        
+        return @($utf8) ? json_decode(utf8_encode($return))->output : json_decode($return)->output;        
     }
     
-    private function getResponse($params = false) {
+    public function getResponse($params = false) {
         if($params) :
             $url = $this->url.http_build_query($params);
             $response = $this->curl($url);
